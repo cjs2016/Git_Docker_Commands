@@ -23,24 +23,34 @@ git restore --staged [파일이름]   파일을 스테이지 상태에서 내림
 git reset <해시값>  해당 위치로 커밋을 이동하고 이후 커밋은 취소됨.
 git branch   브랜치를 보여줌
 git branch <브랜치명> 브랜치를 생성
+git branch -m main  현재 브랜치를 main으로 이름변경
 git checkout <브랜치명>  해당 브랜치로 이동
 git merge <대상브랜치>  현재 head 가 가리키는 브랜치에 대상브랜치를 병합
 git log --oneline --branches --graph
 git init <디렉토리명> 디렉토리를 만드는 동시에 지역  깃저장소도 만듦
 git reset <해시값> 현재 head를 다른 브랜치로 옮기고 현재 커밋은 삭제됨
+git reset .   최종 커밋 이후의 모든 수정내용 삭제
+git reset fd  강제로 디렉토리까지 리셋
 git branch -d <브랜치명>  브랜치를 삭제
 git stash  작업트리의 수정내용을 따로 보관함
 git stash list  스태시 저장소에 있는 내용을 보여줌
 git stash pop  스태시에 있는 내용을 꺼냄
 
 === 원격저장소 ===
-git remote -v 원격저장소 확인
-git remote add origin <원격주소>
+git remote -v 원격저장소 확인 이름 주소
+git remote    원격저장소  이름
+git remote add origin <원격주소>   원격저장소 저장
 git push -u origin master 
 git push
 git pull
 git pull origin master 원격저장소 내용 + 지역저장소
+
+git clone [외부 repository 주소]   해당 디렉토리에 폴더 생성 및 .git 폴더 생성
 git clone [복사한 주소 붙여넣기] [지역디렉토리명]
+git clone -b [특정 branch 이름] [외부 repository 주소] 다른 branch를 clone
+git branch -r  외부 repository  브랜치 목록
+git branch -a  로컬,외부 저정소 브랜치 목록
+
 git fetch 원격저장소내용만 
 git checkout FETCH_HEAD
 git checkout master
