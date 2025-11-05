@@ -1,1 +1,17 @@
+## Dockerfile ##
+
+[ 예제 ]
+FROM ubuntu:14.04    //From <이미지>:<태그> 생성될 이미지의 기반을 설정(예: ubuntu, red hat, etc...)
+MAINTAINER Foo Bar <foo@bar.com>  // 관리자 정보
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf  //쉘스크립트 또는 명령어
+VOLUME ["/data","etc/nginx/site-enabled","/var/log/nginx"]   // 호스트와 공유할 경로의 목록 (docker run 명령의 "-v" 옵션으로도 설정가능)
+WORKDIR /etc/nginx     //CMD에 설정한 실행 파일이 실행될 경로
+CMD ["nginx"]  //컨테이너가 시작할 때 실행할 실행파일 또는 쉘 스크립트
+EXPOSE 80    //호스트와 연결할 포트번호
+
+//=> Dockerfile 작성 후 이미지 생성 명령어
+docker build <옵션><Dockerfile 경로>
+
 
