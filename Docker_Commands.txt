@@ -14,4 +14,21 @@ EXPOSE 80    //호스트와 연결할 포트번호
 //=> Dockerfile 작성 후 이미지 생성 명령어
 docker build <옵션><Dockerfile 경로>
 
+## docker daemon
+## docker0 (bridge)
+## libcontainer
+## cgroup
+
+## namespaces
+
+[ 구현 기술 ]
+clone()  새로운 프로세스와 새로운 namespace 생성
+unshare() 존재하는 프로세스에 새로운 namespace 생성
+setns() 존재하는 namespace에 합류
+
+Mount namespace
+PID namespace
+Network namespace 
+
+
 
