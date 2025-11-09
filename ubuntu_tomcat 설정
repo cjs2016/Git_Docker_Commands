@@ -1,0 +1,65 @@
+spring framework 설치 명령어
+sudo apt update
+sudo apt upgrade -y
+sudo apt install openjdk-17-jdk -y
+java -version
+readlink -f  /usr/bin/java | sed "s:jre/bin/java::"      //=> /usr/lib/jvm/java-17-openjdk-amd64/bin/java
+sudo vi /etc/environment
+source /etc/environment
+echo $JAVA_HOME
+sudo apt install gradle -y  //gradle 설치
+gradle -v
+sudo apt install tomcat10 tomcat10-admin -y
+sudo systemctl start tomcat10
+sudo systemctl enable tomcat10
+sudo apt update
+sudo apt install mysql-server -y
+sudo systemctl status mysql
+sudo mysql
+exit
+
+[sql]
+CREATE USER 'admin123'@'localhost' INDENTIFIED BY 'admin123';
+GRANT ALL PRIVILEGES ON *.* TO 'admin123'@'admin123' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+mysql -u username -p
+
+
+[ ubuntu 에 설치된 tomcat 에 war 파일 배포하기 ]
+sudo apt update
+sudo apt install tomcat9
+sudo systemctl status tomcat9   //tomcat 실행 중인지 확인
+sudo cp your-app.war    /var/lib/tomcat9/webapps/
+sudo systemctl restart tomcat9
+http://localhost:8080/your-app
+
+//관리자 콘솔에서 업로드(선택사항)
+sudo apt install tomcat9-admin  
+/etc/tomcat9/tomcat-users.xml 파일편집
+<user username="admin" password="yourpassword" roles="manager-gui"/>
+http://localhost:8080/manager/html
+
+//tomcat 포트 변경
+sudo nano /etc/tomcat9/server.xml
+<Connector port="8080" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+
+===>
+
+<Connector port="9090" protocol="HTTP/1.1"
+           connectionTimeout="20000"
+           redirectPort="8443" />
+
+sudo systemctl restart tomcat9   //tomcat 재시작
+
+
+- 방화벽 및 포트 충돌 확인
+- 새 포트가 방화벽에서 허용되어야 하고, 다른 서비스가 해당 포트를 사용 중이지 않아야 합니다.
+
+sudo ufw allow 9090/tcp    //방화벽 설정변경
+sudo ufw status
+
+- 포트 충돌 여부 확인
+sudo lsof -i :9090
