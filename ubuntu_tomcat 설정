@@ -9,6 +9,8 @@ source /etc/environment
 echo $JAVA_HOME
 sudo apt install gradle -y  //gradle 설치
 gradle -v
+sudo apt install maven -y   //maven 설치
+mvn -version
 sudo apt install tomcat10 tomcat10-admin -y
 sudo systemctl start tomcat10
 sudo systemctl enable tomcat10
