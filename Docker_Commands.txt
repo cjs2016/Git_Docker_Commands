@@ -99,4 +99,16 @@ services:
     -redis
   db:
 
+[]
+wsl
+docker exec -it mysql bash
+mysql -u ${ID} -p
 
+wsl :/mnt/d/${HOME}/docker-compose/mysql$ docker exec -i mysql mysql -u msaportal -pmsaportal reservation < ./reservation.sql
+
+[]
+docker run -d -e TZ-Asia/Seoul --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:management
+localhost:15672  //RabbitMQ   guest   guest
+
+docker run --name zipkin -d -p 9411:9411 -e TZ=Asia/Seoul openzipkin/zipkin
+http://localhost:9411/zipkin/
